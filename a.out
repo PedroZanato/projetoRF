@@ -1,0 +1,80 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "D:\iverilog\lib\ivl\system.vpi";
+:vpi_module "D:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "D:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "D:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "D:\iverilog\lib\ivl\va_math.vpi";
+S_000001b323d46a20 .scope module, "tb_registrador_paralelo" "tb_registrador_paralelo" 2 3;
+ .timescale 0 0;
+P_000001b323cfbb40 .param/l "BITS" 0 2 6, +C4<00000000000000000000000000001000>;
+v000001b323d44980_0 .var "in", 7 0;
+v000001b323d44a20_0 .var "load", 0 0;
+v000001b323d44ac0_0 .net "out", 7 0, v000001b323d448e0_0;  1 drivers
+E_000001b323cfbf80 .event anyedge, v000001b323d448e0_0;
+S_000001b323d46bb0 .scope module, "reg_inst" "registrador_paralelo" 2 14, 3 1 0, S_000001b323d46a20;
+ .timescale 0 0;
+    .port_info 0 /INPUT 8 "in";
+    .port_info 1 /INPUT 1 "clk";
+    .port_info 2 /INPUT 1 "load";
+    .port_info 3 /OUTPUT 8 "out";
+P_000001b323cfb8c0 .param/l "BITS" 0 3 3, +C4<00000000000000000000000000001000>;
+o000001b323d46f98 .functor BUFZ 1, C4<z>; HiZ drive
+v000001b323d12f60_0 .net "clk", 0 0, o000001b323d46f98;  0 drivers
+v000001b323d12db0_0 .net "in", 7 0, v000001b323d44980_0;  1 drivers
+v000001b323d44840_0 .net "load", 0 0, v000001b323d44a20_0;  1 drivers
+v000001b323d448e0_0 .var "out", 7 0;
+E_000001b323cfbd00 .event posedge, v000001b323d12f60_0;
+    .scope S_000001b323d46bb0;
+T_0 ;
+    %wait E_000001b323cfbd00;
+    %load/vec4 v000001b323d44840_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %load/vec4 v000001b323d12db0_0;
+    %assign/vec4 v000001b323d448e0_0, 0;
+T_0.0 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_000001b323d46a20;
+T_1 ;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v000001b323d44980_0, 0, 8;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001b323d44a20_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001b323d44a20_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 85, 0, 8;
+    %store/vec4 v000001b323d44980_0, 0, 8;
+    %delay 5, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001b323d44a20_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 170, 0, 8;
+    %store/vec4 v000001b323d44980_0, 0, 8;
+    %delay 5, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001b323d44a20_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001b323d44a20_0, 0, 1;
+    %delay 5, 0;
+    %vpi_call 2 30 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+    .scope S_000001b323d46a20;
+T_2 ;
+    %wait E_000001b323cfbf80;
+    %vpi_call 2 35 "$display", "out = %b", v000001b323d44ac0_0 {0 0 0};
+    %jmp T_2;
+    .thread T_2, $push;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_registrador_paralelo.v";
+    "./registrador_paralelo.v";
